@@ -9,6 +9,9 @@ body {
     /*PRESO DA EPICODE*/
     background-color: #0f101c;
     color: white;
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
     }
 
 .main {
@@ -134,7 +137,6 @@ li {
     margin-bottom: 50px;
     margin-top: 50px;
     height: 150px;
-
 }
 
 #answers {
@@ -173,5 +175,11 @@ li {
     font-family: "Outfit", sans-serif;
     font-weight: normal;
     opacity: 0.9;
+
+}
+
+#resultChart {
+    width: 150px;
+    height: 150px;
 
 }

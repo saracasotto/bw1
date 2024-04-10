@@ -118,10 +118,10 @@ const correctElement = document.getElementById('correct');  //ULTIMA PAGINA HTML
 const incorrectElement = document.getElementById('incorrect'); //ULTIMA PAGINA HTML
 
 function goToNextPage() {
-  window.location.href = "test.html"; 
+  window.location.href = "test.html";
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   if (window.location.pathname.endsWith('test.html')) {
     displayQuestion();
   }
@@ -161,12 +161,12 @@ function displayQuestion() {
 }
 
 function updateQuestionCount() {
-   const currentQuestions = currentQuestionIndex + 1
-   questionCountLabel.textContent = "Domanda " + currentQuestions + " di " + totalQuestions
+  const currentQuestions = currentQuestionIndex + 1
+  questionCountLabel.textContent = "Domanda " + currentQuestions + " di " + totalQuestions
 }
 
 function nextQuestion() {
-  currentQuestionIndex ++
+  currentQuestionIndex++
   if (currentQuestionIndex < totalQuestions) { // verifica se l'indice della prossima domanda è minore che la quantità totale
     displayQuestion()
   }
@@ -211,6 +211,12 @@ function endQuiz() {
   const resultsDiv = document.getElementById('results');
   // Aggiungi il paragrafo al div dei risultati
   resultsDiv.appendChild(resultParagraph);
+  generateChart(resultChart);
+
+
+  let removeQuestionLabel = document.getElementById("questionCountLabel")
+  removeQuestionLabel.remove()
+
 }
 
 
@@ -238,20 +244,31 @@ function startTimer() {
   }, 1000);
 }
 
+function generateChart() {
+  const resultChartCanvas = document.getElementById("resultChart")//.getContext("2d"); //questo e' diverso
+
+  const resultChart = new Chart(resultChartCanvas, {
+    type: "pie",
+    data: {
+      labels: ["Corrette", "Errate"],
+      datasets: [
+        {
+          label: "Punteggio",
+          data: [correctAnswers, incorrectAnswers],
+          backgroundColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
+        },
+      ],
+    },
+  });
+}
 
 /*
 
-Generazione random delle domande (oggetto di questions - sono 10)
-se correct answer maggiori di 5, il test è passato.
-else, bocciato
-
-Funzione richiamata al click sulla risposta corretta: +1 punto
-Funzione richiamata al click sulla risposta sbagliata: -1 punto
-Funzione set timeout + non ha selezionato niente - se scade il tempo, si passa alla domanda successiva e -1 punto
-//CHIEDERE A ALFREDO TEMA CLICK DOMANDE
+INSERIRE TIMER CON GRAFICA
+SISTEMARE RESPONSIVENESS - FLASH INIZIALE 
+SISTEMARE GRAFICA DEL GRAFICO 
 
 
-Al click sull'ultima risposta si accede alla pagina 3 e si genera il punteggio attiva display risultato
 
 
 */

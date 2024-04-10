@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
     <title>Test</title>
 </head>
 
@@ -29,12 +30,15 @@
             <div id="results">
                 <p><span id="correct"></span></p>
                 <p><span id="incorrect"></span></p>
+                <div class="container">
+                    <canvas id="resultChart"></canvas>
+                  </div> <!--stilizzare in css -->
             </div>
             <div>
                 <label id="questionCountLabel"></label>
             </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
 </body>
 

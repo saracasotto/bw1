@@ -105,6 +105,7 @@ let correctAnswers = 0;
 let incorrectAnswers = 0;
 let timer = 60;
 let intervalId;
+const totalQuestions = questions.length;
 // VARIABILE PER L'INTERVALLO DEL TIMER
 //FA RIPARTIRE IL TIMER QUANDO PASSI ALLA DOMANDA SUCCESSIVA
 
@@ -138,24 +139,37 @@ function checkCheckbox() {
 
 document.getElementById("checkbox").addEventListener("click", checkCheckbox);
 
+
+
 function displayQuestion() {
-  const currentQuestion = questions[currentQuestionIndex]; //CICLA ARRAY E MOSTRA DOMANDE
+  const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
-  answersElement.innerHTML = ''; // PULISCE RISPOSTE PRECEDENTI
+  answersElement.innerHTML = '';
 
   const answers = currentQuestion.incorrect_answers.concat(currentQuestion.correct_answer);
-  //DA UN'ORDINE CASUALE ALLE RISPOSTE
   answers.sort(() => Math.random() - 0.5);
 
-
   answers.forEach(answer => {
-    //CREA UN BOTTONE PER OGNI RISPOSTA
     const answerButton = document.createElement('button');
     answerButton.textContent = answer;
     answerButton.addEventListener('click', () => checkAnswer(answer));
     answersElement.appendChild(answerButton);
   });
-  startTimer(); // Avvia il timer quando viene visualizzata una nuova domanda
+
+  startTimer();
+  updateQuestionCount()
+}
+
+function updateQuestionCount() {
+   const currentQuestions = currentQuestionIndex + 1
+   questionCountLabel.textContent = "Domanda " + currentQuestions + " di " + totalQuestions
+}
+
+function nextQuestion() {
+  currentQuestionIndex ++
+  if (currentQuestionIndex < totalQuestions) { // verifica se l'indice della prossima domanda è minore che la quantità totale
+    displayQuestion()
+  }
 }
 
 function checkAnswer(answer) {

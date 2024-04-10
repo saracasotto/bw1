@@ -166,3 +166,12 @@ li {
 #questions-left {
     text-align: center;
 }
+
+
+#results {
+    font-size: 40px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+    opacity: 0.9;
+
+}

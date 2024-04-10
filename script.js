@@ -178,10 +178,29 @@ function checkAnswer(answer) {
 function endQuiz() {
   questionElement.textContent = 'Test completed';
   answersElement.innerHTML = '';
-  timerElement.textContent = 'Tempo scaduto';
-  correctElement.textContent = 'Domande corrette: ' + correctAnswers;
-  incorrectElement.textContent = 'Domande sbagliate: ' + incorrectAnswers;
+  timerElement.textContent = 'Time finished';
+  correctElement.textContent = 'Right answers: ' + correctAnswers;
+  incorrectElement.textContent = 'Wrong answers: ' + incorrectAnswers;
+
+  const totalQuestions = correctAnswers + incorrectAnswers;
+  const percentage = (correctAnswers / totalQuestions) * 100;
+
+  const resultParagraph = document.createElement("p");
+
+
+  if (correctAnswers > 5) {
+    resultParagraph.innerText = "Passed! Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
+  } else {
+    resultParagraph.innerText = "Failed. Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
+  }
+
+  const resultsDiv = document.getElementById('results');
+  // Aggiungi il paragrafo al div dei risultati
+  resultsDiv.appendChild(resultParagraph);
 }
+
+
+
 
 /* OPPURE SE CORRECT ANSWER < TEST FALLITO
 ELSE - TEST SUPERATO */

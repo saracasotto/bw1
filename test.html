@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
 
     <title>Test</title>
-</head>
-
-<body>
-
+  </head>
+  <body>
     <div class="main">
-            <div class="logo">
-                <img src="assets/epicode_logo.png" alt="">
-            </div>
-            <div class="timer-container">
-                <div id="timer" class="timer"></div>
-              </div>
-
-            <div id="quiz-container">
-                <p id="question">prova stile</p>
-                <div id="answers">
-                </div>
-
-            </div>
-            <div id="questions-left"> 
-            </div>
-            <div id="results">
-                <p><span id="correct"></span></p>
-                <p><span id="incorrect"></span></p>
-                <div class="container">
-                    <canvas id="resultChart"></canvas>
-                  </div>
-            </div>
-            <div>
-                <label id="questionCountLabel"></label>
-            </div>
+      <div class="logo">
+        <img src="assets/epicode_logo.png" alt="" />
+      </div>
+      <div class="timer-container">
+        <div id="timer" class="timer"></div>
+      </div>
+      <div id="quiz-container">
+        <p id="question">prova stile</p>
+        <div id="answers"></div>
+      </div>
+      <div>
+        <label id="questionCountLabel"></label>
+      </div>
+      <div id="questions-left"></div>
+      <div id="results">
+        <p><span id="correct"></span></p>
+        <p><span id="incorrect"></span></p>
+      <div class="container">
+        <canvas id="resultChart"></canvas>
+      </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js" defer></script>
-</body>
-
+  </body>
 </html>

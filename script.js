@@ -1,4 +1,3 @@
-
 const questions = [
   {
     category: "Science: Computers",
@@ -66,11 +65,7 @@ const questions = [
     question:
       "What is the code name for the mobile operating system Android 7.0?",
     correct_answer: "Nougat",
-    incorrect_answers: [
-      "Ice Cream Sandwich",
-      "Jelly Bean",
-      "Marshmallow",
-    ],
+    incorrect_answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow"],
   },
   {
     category: "Science: Computers",
@@ -99,7 +94,6 @@ const questions = [
   },
 ];
 
-
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let incorrectAnswers = 0;
@@ -109,23 +103,22 @@ const totalQuestions = questions.length;
 // VARIABILE PER L'INTERVALLO DEL TIMER
 //FA RIPARTIRE IL TIMER QUANDO PASSI ALLA DOMANDA SUCCESSIVA
 
-
-const startButton = document.getElementById('start-button');
-const questionElement = document.getElementById('question');
-const answersElement = document.getElementById('answers');
-const timerElement = document.getElementById('timer');
-const correctElement = document.getElementById('correct');  //ULTIMA PAGINA HTML
-const incorrectElement = document.getElementById('incorrect'); //ULTIMA PAGINA HTML
+const startButton = document.getElementById("start-button");
+const questionElement = document.getElementById("question");
+const answersElement = document.getElementById("answers");
+const timerElement = document.getElementById("timer");
+const correctElement = document.getElementById("correct"); //ULTIMA PAGINA HTML
+const incorrectElement = document.getElementById("incorrect"); //ULTIMA PAGINA HTML
 
 function goToNextPage() {
   window.location.href = "test.html";
 }
 
-window.addEventListener('load', function () {
-  if (window.location.pathname.endsWith('test.html')) {
+window.addEventListener("load", function () {
+  if (window.location.pathname.endsWith("test.html")) {
     displayQuestion();
   }
-});  //FUNZIONE PER ATTIVARE IL TEST APPENA SI CARICA LA PAGINA
+}); //FUNZIONE PER ATTIVARE IL TEST APPENA SI CARICA LA PAGINA
 
 function checkCheckbox() {
   let checkbox = document.getElementById("checkbox");
@@ -139,36 +132,38 @@ function checkCheckbox() {
 
 document.getElementById("checkbox").addEventListener("click", checkCheckbox);
 
-
-
 function displayQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
-  answersElement.innerHTML = '';
+  answersElement.innerHTML = "";
 
-  const answers = currentQuestion.incorrect_answers.concat(currentQuestion.correct_answer);
+  const answers = currentQuestion.incorrect_answers.concat(
+    currentQuestion.correct_answer
+  );
   answers.sort(() => Math.random() - 0.5);
 
-  answers.forEach(answer => {
-    const answerButton = document.createElement('button');
+  answers.forEach((answer) => {
+    const answerButton = document.createElement("button");
     answerButton.textContent = answer;
-    answerButton.addEventListener('click', () => checkAnswer(answer));
+    answerButton.addEventListener("click", () => checkAnswer(answer));
     answersElement.appendChild(answerButton);
   });
 
   startTimer();
-  updateQuestionCount()
+  updateQuestionCount();
 }
 
 function updateQuestionCount() {
-  const currentQuestions = currentQuestionIndex + 1
-  questionCountLabel.textContent = "Domanda " + currentQuestions + " di " + totalQuestions
+  const currentQuestions = currentQuestionIndex + 1;
+  questionCountLabel.textContent =
+    "Domanda " + currentQuestions + " di " + totalQuestions;
 }
 
 function nextQuestion() {
-  currentQuestionIndex++
-  if (currentQuestionIndex < totalQuestions) { // verifica se l'indice della prossima domanda è minore che la quantità totale
-    displayQuestion()
+  currentQuestionIndex++;
+  if (currentQuestionIndex < totalQuestions) {
+    // verifica se l'indice della prossima domanda è minore che la quantità totale
+    displayQuestion();
   }
 }
 
@@ -188,39 +183,46 @@ function checkAnswer(answer) {
   }
 }
 
-
 function endQuiz() {
-  questionElement.textContent = 'Test completed';
-  answersElement.innerHTML = '';
-  timerElement.textContent = 'Time finished';
-  correctElement.textContent = 'Right answers: ' + correctAnswers;
-  incorrectElement.textContent = 'Wrong answers: ' + incorrectAnswers;
+  questionElement.textContent = "Test completed";
+  answersElement.innerHTML = "";
+  timerElement.textContent = "Time finished";
+  correctElement.textContent = "Right answers: " + correctAnswers;
+  incorrectElement.textContent = "Wrong answers: " + incorrectAnswers;
 
   const totalQuestions = correctAnswers + incorrectAnswers;
   const percentage = (correctAnswers / totalQuestions) * 100;
 
   const resultParagraph = document.createElement("p");
 
-
   if (correctAnswers > 5) {
-    resultParagraph.innerText = "Passed! Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
+    resultParagraph.innerText =
+      "Passed! Correct Answers: " +
+      correctAnswers +
+      "/" +
+      totalQuestions +
+      " (" +
+      percentage +
+      "%)";
   } else {
-    resultParagraph.innerText = "Failed. Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
+    resultParagraph.innerText =
+      "Failed. Correct Answers: " +
+      correctAnswers +
+      "/" +
+      totalQuestions +
+      " (" +
+      percentage +
+      "%)";
   }
 
-  const resultsDiv = document.getElementById('results');
+  const resultsDiv = document.getElementById("results");
   // Aggiungi il paragrafo al div dei risultati
   resultsDiv.appendChild(resultParagraph);
   generateChart(resultChart);
 
-
-  let removeQuestionLabel = document.getElementById("questionCountLabel")
-  removeQuestionLabel.remove()
-
+  let removeQuestionLabel = document.getElementById("questionCountLabel");
+  removeQuestionLabel.remove();
 }
-
-
-
 
 /* OPPURE SE CORRECT ANSWER < TEST FALLITO
 ELSE - TEST SUPERATO */
@@ -245,12 +247,11 @@ function startTimer() {
 }
 
 function generateChart() {
-  const resultChartCanvas = document.getElementById("resultChart")//.getContext("2d"); //questo e' diverso
+  const resultChartCanvas = document.getElementById("resultChart"); //.getContext("2d"); //questo e' diverso
 
   const resultChart = new Chart(resultChartCanvas, {
     type: "pie",
     data: {
-
       datasets: [
         {
           label: "Pts.",

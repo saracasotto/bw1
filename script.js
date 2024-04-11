@@ -250,10 +250,10 @@ function generateChart() {
   const resultChart = new Chart(resultChartCanvas, {
     type: "pie",
     data: {
-      labels: ["Corrette", "Errate"],
+
       datasets: [
         {
-          label: "Punteggio",
+          label: "Pt.",
           data: [correctAnswers, incorrectAnswers],
           backgroundColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
         },

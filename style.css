@@ -175,11 +175,14 @@ li {
     font-family: "Outfit", sans-serif;
     font-weight: normal;
     opacity: 0.9;
+    text-align: center;
 
 }
 
-#resultChart {
-    width: 150px;
-    height: 150px;
-
+.container{
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    box-sizing: border-box;
 }
+

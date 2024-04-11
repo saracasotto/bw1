@@ -253,7 +253,7 @@ function generateChart() {
 
       datasets: [
         {
-          label: "Pt.",
+          label: "Pts.",
           data: [correctAnswers, incorrectAnswers],
           backgroundColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
         },

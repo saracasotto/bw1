@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -15,18 +16,19 @@ body {
 }
 
 .main {
-  height: 79.5vh;
-  max-width: 50vw;
+  height: 100%;
+  max-width: 100%;
   margin: 0 auto;
   background-image: url(assets/bg.jpg);
   background-size: cover;
-  padding: 100px;
-  padding-top: 30px;
+  padding: 30px 15px;
 }
 
 .logo img {
-  height: 40px;
-  padding-bottom: 60px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 20px
 }
 
 h1 {
@@ -104,9 +106,9 @@ li {
 /*PAGINA 2 TEST*/
 
 .timer-container {
-  top: 30px;
-  right: 300px;
-  position: fixed;
+  position: absolute;
+  top: 15px;
+  right: 10%;
   width: 100px;
   height: 100px;
 }
@@ -139,7 +141,8 @@ li {
 
 #answers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Due colonne di larghezza uguale */
+  grid-template-columns: repeat(2, 1fr);
+  /* Due colonne di larghezza uguale */
   grid-gap: 10px;
 }
 
@@ -156,15 +159,12 @@ li {
   padding: 0.5em 2em;
   margin: 10px 15px;
   cursor: pointer;
-  width: 100%;
 }
 
 #answers button:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(210, 0, 148, 1) 36%,
-    rgba(107, 38, 87, 1) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(210, 0, 148, 1) 36%,
+      rgba(107, 38, 87, 1) 100%);
 }
 
 #questions-left {

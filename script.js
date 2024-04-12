@@ -114,6 +114,7 @@ function goToNextPage() {
   window.location.href = "test.html";
 }
 
+
 window.addEventListener("load", function () {
   if (window.location.pathname.endsWith("test.html")) {
     displayQuestion();
@@ -222,7 +223,7 @@ ELSE - TEST SUPERATO */
 function startTimer() {
   let timer = 60;
   timerElement.textContent = timer;
-
+}
   /*timerElement.innerHTML = `
   <svg width="140" height="140">
     <circle cx="70" cy="70" r="70" id="background-circle"></circle>
@@ -231,7 +232,7 @@ function startTimer() {
 `;*/
 
 
-  intervalId = setInterval(() => {
+  /*intervalId = setInterval(() => {
     timer--;
     timerElement.textContent = timer;
     if (timer === 0) {
@@ -245,7 +246,7 @@ function startTimer() {
       }
     }
   }, 1000);
-}
+}*/
 
 function generateChart() {
   const resultChartCanvas = document.getElementById("resultChart"); //.getContext("2d"); //questo e' diverso
@@ -265,7 +266,7 @@ function generateChart() {
 }
 // da qui comincia js stelle valutazione
 
-/*let arrayStars = document.querySelectorAll('.star img');
+/*let arrayStars = document.querySelectorAll('.star');
 
 arrayStars.forEach((star, index) => { //itera sull'array di stelle, e prende come parametri la stella e l'indice corrispondente nell'array
   star.addEventListener('click', () => {
@@ -275,4 +276,5 @@ arrayStars.forEach((star, index) => { //itera sull'array di stelle, e prende com
       
     })
   })
-}) NON FUNZIONA*/ 
+}) */ //NON FUNZIONA
+

@@ -238,8 +238,8 @@ li {
   display: inline-block;
   box-sizing: border-box;
 }
-
-#rate {
+/* NON SERVONO*/
+/*#rate {
   display: flex;
   flex-direction: row-reverse; 
   justify-content: flex-end;
@@ -255,7 +255,7 @@ li {
     filter: brightness(20%);
   }
   
-  
+  .active,
   .stella:hover,
   .stella:nth-of-type(0):hover ~ .stella,
   .stella:nth-of-type(1):hover ~ .stella, 
@@ -271,4 +271,4 @@ li {
     filter: none;
     transform: scale(115%);
     cursor: pointer;
-  }
+  }*/ /*NON SERVONO*/

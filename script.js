@@ -155,8 +155,8 @@ function displayQuestion() {
 
 function updateQuestionCount() {
   const currentQuestions = currentQuestionIndex + 1;
-  questionCountLabel.textContent =
-    "Domanda " + currentQuestions + " di " + totalQuestions;
+  questionCountLabel.innerHTML =
+    "QUESTION " + currentQuestions + " / "  + totalQuestions ;
 }
 
 function nextQuestion() {
@@ -186,34 +186,23 @@ function checkAnswer(answer) {
 function endQuiz() {
   questionElement.textContent = "Test completed";
   answersElement.innerHTML = "";
-  timerElement.textContent = "Time finished";
   correctElement.textContent = "Right answers: " + correctAnswers;
   incorrectElement.textContent = "Wrong answers: " + incorrectAnswers;
-
   const totalQuestions = correctAnswers + incorrectAnswers;
   const percentage = (correctAnswers / totalQuestions) * 100;
 
   const resultParagraph = document.createElement("p");
 
   if (correctAnswers > 5) {
-    resultParagraph.innerText =
-      "Passed! Correct Answers: " +
-      correctAnswers +
-      "/" +
-      totalQuestions +
-      " (" +
-      percentage +
-      "%)";
+    questionElement.textContent = "Congratulations Epicoder, test passed!"
+    resultParagraph.innerText = "Passed! Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
   } else {
-    resultParagraph.innerText =
-      "Failed. Correct Answers: " +
-      correctAnswers +
-      "/" +
-      totalQuestions +
-      " (" +
-      percentage +
-      "%)";
+    questionElement.textContent = "Sorry Epicoder, try again, you'll do better next time!"
+
+    resultParagraph.innerText = "Failed. Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
   }
+
+  timerElement.remove();
 
   const resultsDiv = document.getElementById("results");
   // Aggiungi il paragrafo al div dei risultati
@@ -222,6 +211,9 @@ function endQuiz() {
 
   let removeQuestionLabel = document.getElementById("questionCountLabel");
   removeQuestionLabel.remove();
+
+  let removeAnswersDiv = document.getElementById("answers");
+  removeAnswersDiv.remove()
 }
 
 /* OPPURE SE CORRECT ANSWER < TEST FALLITO
@@ -230,6 +222,15 @@ ELSE - TEST SUPERATO */
 function startTimer() {
   let timer = 60;
   timerElement.textContent = timer;
+
+  /*timerElement.innerHTML = `
+  <svg width="140" height="140">
+    <circle cx="70" cy="70" r="70" id="background-circle"></circle>
+    <circle cx="70" cy="70" r="70" id="progress-circle"></circle>
+  </svg>
+`;*/
+
+
   intervalId = setInterval(() => {
     timer--;
     timerElement.textContent = timer;
@@ -250,26 +251,15 @@ function generateChart() {
   const resultChartCanvas = document.getElementById("resultChart"); //.getContext("2d"); //questo e' diverso
 
   const resultChart = new Chart(resultChartCanvas, {
-    type: "pie",
+    type: "doughnut",
     data: {
       datasets: [
-        {
-          label: "Pts.",
+        { 
+          label: "Points",
           data: [correctAnswers, incorrectAnswers],
-          backgroundColor: ["rgba(75, 192, 192, 1)", "rgba(255, 99, 132, 1)"],
-        },
-      ],
+          backgroundColor: ["#00ffff", "#d20094"],
+        }
+      ]
     },
   });
 }
-
-/*
-
-INSERIRE TIMER CON GRAFICA
-SISTEMARE RESPONSIVENESS - FLASH INIZIALE 
-SISTEMARE GRAFICA DEL GRAFICO 
-
-
-
-
-*/

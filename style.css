@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -12,74 +13,98 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .main {
-  height: 79.5vh;
-  max-width: 50vw;
+  height: 100%;
+  max-width: 70%;
   margin: 0 auto;
   background-image: url(assets/bg.jpg);
   background-size: cover;
-  padding: 100px;
-  padding-top: 30px;
+  padding: 30px 0px;
+}
+
+.row {
+  width: auto;
+  height: 15%;
+  padding: 0 80px;
+}
+
+.logo {
+  width: 20%;
 }
 
 .logo img {
-  height: 40px;
-  padding-bottom: 60px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 80px
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 5vw;
   font-family: "Outfit", sans-serif;
   font-weight: normal;
   line-height: 50px;
   opacity: 0.9;
+  padding: 0px 80px;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 2vw;
   color: #d20094;
   font-family: "Outfit", sans-serif;
   font-weight: bold;
+  padding: 0px 80px;
+
 }
 
-.instructions {
+.instructions-line {
   font-family: "Inter", sans-serif;
-  font-size: 16px;
+  font-size: 1.5vw;
   padding-top: 40px;
+
 }
 
-.instructions p {
-  padding-top: 10px;
+.instructions-line p {
+  font-size: 1vw;
+  padding: 5px 80px 5px 80px;
+  opacity: 0.9;
+  font-weight: normal;
 }
 
 ul {
-  padding-top: 50px;
-  padding-left: 30px;
+  padding: 30px 100px 0px 100px;
+
 }
 
 li {
-  padding-top: 3px;
+  padding-top: 5px;
+  font-size: 0.65em;
+  opacity: 0.9;
 }
 
-.bottom {
+#bottom {
   font-family: "Inter", sans-serif;
-  font-size: 13px;
+  font-size: 1vw;
   padding-top: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 70px 80px 30px 80px;
+
 }
 
-.check {
+#check {
   display: flex;
   flex-direction: row;
 }
 
-.check p {
-  padding-left: 15px;
+#check p {
+  padding: 0 15px;
 }
 
 #checkbox {
@@ -92,83 +117,89 @@ li {
   border: none;
   cursor: pointer;
   font-family: "Outfit", sans-serif;
-  font-size: 1.3em;
+  font-size: 1.5vw;
   font-weight: bold;
-  padding: 0.5em 2.5em;
+  padding: 0.7em 2.75em;
 }
 
 #start-button:enabled {
   box-shadow: 0 0 2em 0 #00ffff;
 }
 
-/*PAGINA 2 TEST*/
+
+
+/*QUI COMINCIA LA PAGINA 2 TEST.HTML*/
 
 .timer-container {
-  top: 30px;
-  right: 300px;
-  position: fixed;
+  position: absolute;
+  top: 5%;
+  right: 25%;
   width: 100px;
   height: 100px;
 }
 
-.timer {
-  width: 100%;
-  height: 100%;
+#timer {
+  width: 75%;
+  height: 75%;
   border-radius: 50%;
-  background-color: #00ffff;
-  font-family: "Outfit", sans-serif;
-  color: #23294f;
-  font-size: 20px;
-  font-weight: bold;
+  background-color: transparent;
+  color: white;
+  opacity: 0.9;
+  border: solid #00ffff 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 2vw;
+  font-weight: normal;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
+#quiz-container{
+  padding: 50px 80px;
+  height: auto;
+  max-width: 80%;
+}
+
 #question {
   text-align: center;
-  font-size: 30px;
+  font-size: 2.5vw;
   font-family: "Outfit", sans-serif;
   font-weight: normal;
   opacity: 0.9;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  height: 150px;
+  height: 8vw;
+  max-width: 100%;
 }
 
 #answers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Due colonne di larghezza uguale */
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
+  height: 150px;
+  padding-top: 80px;
 }
 
 #answers button {
   background-color: #23294f;
   opacity: 0.7;
-  border-radius: 25px;
+  height: fit-content;
+  border-radius: 30px;
   border-style: outset;
   border-color: white;
   font-family: "Outfit", sans-serif;
-  font-size: 1em;
+  font-size: 1.5vw;
   color: white;
   font-weight: normal;
-  padding: 0.5em 2em;
-  margin: 10px 15px;
+  padding: 1vw 2vw;
+  margin: 0.5vw 1vw;
   cursor: pointer;
-  width: 100%;
+  vertical-align: center;
 }
 
 #answers button:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(210, 0, 148, 1) 36%,
-    rgba(107, 38, 87, 1) 100%
-  );
-}
-
-#questions-left {
-  text-align: center;
+  background: linear-gradient(180deg,
+      rgba(210, 0, 148, 1) 36%,
+      rgba(107, 38, 87, 1) 100%);
 }
 
 #questionCountLabel {
@@ -176,19 +207,33 @@ li {
   display: flex;
   justify-content: center;
   padding-top: 20px;
+  height: 80x;
+  font-size: 1.2vw;
+  opacity: 0.9;
+  letter-spacing: 1px;
 }
 
+
 #results {
-  font-size: 40px;
+  font-size: 2vw;
+  max-width: 100%;
   font-family: "Outfit", sans-serif;
   font-weight: normal;
   opacity: 0.9;
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.container {
-  width: 200px;
+.results:last-child {
+  display: inline-block;
+}
+
+.chart-container {
+  max-width: 200px;
   height: 200px;
+  padding-bottom: 40px;
   display: inline-block;
   box-sizing: border-box;
 }

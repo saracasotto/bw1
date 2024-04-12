@@ -204,7 +204,7 @@ function endQuiz() {
 
   timerElement.remove();
 
-  const resultsDiv = document.getElementById("results");
+  const resultsDiv = document.getElementById("results"); // a div results so pode aparecer na ultima pagina quando vem o resultado
   // Aggiungi il paragrafo al div dei risultati
   resultsDiv.appendChild(resultParagraph);
   generateChart(resultChart);

@@ -263,3 +263,16 @@ function generateChart() {
     },
   });
 }
+// da qui comincia js stelle valutazione
+
+/*let arrayStars = document.querySelectorAll('.star img');
+
+arrayStars.forEach((star, index) => { //itera sull'array di stelle, e prende come parametri la stella e l'indice corrispondente nell'array
+  star.addEventListener('click', () => {
+    arrayStars.forEach((star, selectedIndex) => { //all'interno del listener, quando passiamo il mouse sopra, questo codice itera di nuovo sull'array
+      
+      index <= selectedIndex ? star.classList.add('active') : star.classList.remove('active');// in sostanza fa sì che se clicco una stella, anche tutte le stelle rpima di lei sia segnate come attive e le altre dopo non attive
+      
+    })
+  })
+}) NON FUNZIONA*/ 

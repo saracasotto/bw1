@@ -10,34 +10,45 @@
 </head>
 
 <body>
-  <div class="main">   <!--SLIDE DUE-->
-    <div class="row">
-      <div class="logo">
-        <img src="assets/epicode_logo.png" alt="logo" />
+  <div class="general-container"> <!--SLIDE DUE-->
+    <div class="main">
+      <div class="row">  <!--INCLUDE LOGO E TIMER-->
+        <div class="logo">
+          <img src="assets/epicode_logo.png" alt="logo" />
+        </div>
+        <div class="timer-container">
+          <svg class="timer-svg">
+            <circle class="timer-circle" cx="100" cy="100" r="70"></circle>
+            <text class="timer-text" x="100" y="100"></text>
+          </svg>
+        </div>
+        <!--<div class="timer-container"> 
+          <circle id="timer" cx="70" cy="70" r="70"></circle>
+        </div>-->
       </div>
-      <div class="timer-container">  <!--AGGIUNTO AL CONTENITORE ROW-->
-        <circle id="timer" cx="70" cy="70" r="70"></circle>
+
+      <div id="quiz-container"> <!--CONTENITORE DI DOMANDE E RISPOSTE-->
+        <p id="question"></p>
+        <div id="answers"></div>
+      </div>
+      <div>
+        <label id="questionCountLabel"></label> <!--DOMANDA 1/10-->
+      </div>
+
+
+      <div id="results"> <!--QUI PARTE LA SLIDE TRE-->
+        <p><span id="correct"></span></p>
+        <div class="chart-container">
+          <canvas id="resultChart"></canvas> <!--grafico a torta-->
+        </div>
+        <p><span id="incorrect"></span></p>
       </div>
     </div>
-
-    <div id="quiz-container"> <!--CONTENITORE DI DOMANDE E RISPOSTE-->
-      <p id="question"></p>
-      <div id="answers"></div>
-    </div>
-    <div>
-      <label id="questionCountLabel"></label> <!--DOMANDA 1/10-->
-    </div>
+  </div>
 
 
-    <div id="results"> <!--QUI PARTE LA SLIDE TRE-->
-      <p><span id="correct"></span></p>
-      <div class="chart-container">
-        <canvas id="resultChart"></canvas> <!--grafico a torta-->
-      </div>
-      <p><span id="incorrect"></span></p>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

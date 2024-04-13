@@ -97,14 +97,12 @@ const questions = [
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let incorrectAnswers = 0;
-let timer = 60;
 let intervalId;
 const totalQuestions = questions.length;
 
 const startButton = document.getElementById("start-button"); //PRIMA PAGINA
 const questionElement = document.getElementById("question"); //SECONDA PAGINA
 const answersElement = document.getElementById("answers"); //SECONDA PAGINA
-const timerElement = document.getElementById("timer"); //SECONDA PAGINA
 const correctElement = document.getElementById("correct"); //TERZA PAGINA
 const incorrectElement = document.getElementById("incorrect"); //TERZA PAGINA
 
@@ -131,31 +129,51 @@ window.addEventListener("load", function () {
     displayQuestion();
   }
 });
+let duration = 15; 
+let timerText = document.querySelector(".timer-text");
 
-//ATTIVAZIONE DEL TIMER DI 60 SECONDI 
+function updateTimer() {
+  let timer = duration;
 
-function startTimer() {
-  timer = 60; // Inizializzazione del timer
-  timerElement.textContent = timer;
-  intervalId = setInterval(() => {
-    if (timer === 0) {
-      clearInterval(intervalId);
-      incorrectAnswers++;
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        displayQuestion();
-      } else {
-        endQuiz();
+  let circle = document.querySelector(".timer-circle");
+  let circumference = 2 * Math.PI * parseFloat(circle.getAttribute("r")); // Calcola la circonferenza
+
+  // Aggiungi un ritardo di 1 secondo prima di avviare l'intervallo
+  setTimeout(function() {
+    let intervalId = setInterval(function () {
+      timerText.textContent = timer;
+      
+      let percentage = (timer / duration);
+      let offset = circumference * (1 - percentage); // Calcola l'offset in base al tempo trascorso
+      circle.style.strokeDashoffset = offset;
+
+      if (timer <= 10) {
+        circle.classList.add("pulse");
       }
-    } else {
-      timer--; // Decremento del timer solo se non è ancora zero
-      timerElement.textContent = timer;
-    }
-  }, 1000);
+
+      if (timer === 0) {
+        clearInterval(intervalId);
+        incorrectAnswers++;
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < questions.length) {
+          displayQuestion();
+        } else {
+          endQuiz();
+        }
+      } else {
+        timer--; // Decremento del timer solo se non è ancora zero
+      }
+
+    }, 1000);
+  }, 1000); // Avvia l'intervallo dopo 1 secondo
 }
 
  //ATTIVAZIONE DEL TEST APPENA SI CARICA LA PAGINA CON RICHIAMO DI FUNZIONE TIMER
+
 function displayQuestion() {
+  clearInterval(intervalId);
+
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
   answersElement.innerHTML = "";
@@ -171,7 +189,8 @@ function displayQuestion() {
     answerButton.addEventListener("click", () => checkAnswer(answer));
     answersElement.appendChild(answerButton);
   });
-  startTimer();
+  updateTimer(30)
+  clearInterval(intervalId);
   updateQuestionCount();
 }
 
@@ -227,9 +246,7 @@ function endQuiz() {
 
     resultParagraph.innerText = "Failed. Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
   }
-
-  timerElement.remove();  //RIMUOVE IL TIMER 
-
+  
   const resultsDiv = document.getElementById("results"); 
   // AGGIUNTA DI UN PARAGRAFO AL DIV RESULTS
   resultsDiv.appendChild(resultParagraph);

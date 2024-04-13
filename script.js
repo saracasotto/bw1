@@ -100,26 +100,15 @@ let incorrectAnswers = 0;
 let timer = 60;
 let intervalId;
 const totalQuestions = questions.length;
-// VARIABILE PER L'INTERVALLO DEL TIMER
-//FA RIPARTIRE IL TIMER QUANDO PASSI ALLA DOMANDA SUCCESSIVA
 
-const startButton = document.getElementById("start-button");
-const questionElement = document.getElementById("question");
-const answersElement = document.getElementById("answers");
-const timerElement = document.getElementById("timer");
-const correctElement = document.getElementById("correct"); //ULTIMA PAGINA HTML
-const incorrectElement = document.getElementById("incorrect"); //ULTIMA PAGINA HTML
+const startButton = document.getElementById("start-button"); //PRIMA PAGINA
+const questionElement = document.getElementById("question"); //SECONDA PAGINA
+const answersElement = document.getElementById("answers"); //SECONDA PAGINA
+const timerElement = document.getElementById("timer"); //SECONDA PAGINA
+const correctElement = document.getElementById("correct"); //TERZA PAGINA
+const incorrectElement = document.getElementById("incorrect"); //TERZA PAGINA
 
-function goToNextPage() {
-  window.location.href = "test.html";
-}
-
-
-window.addEventListener("load", function () {
-  if (window.location.pathname.endsWith("test.html")) {
-    displayQuestion();
-  }
-}); //FUNZIONE PER ATTIVARE IL TEST APPENA SI CARICA LA PAGINA
+//ATTIVAZIONE BOTTONE SOLAMENTE SE SI CLICCA LA CHECKBOX
 
 function checkCheckbox() {
   let checkbox = document.getElementById("checkbox");
@@ -129,11 +118,43 @@ function checkCheckbox() {
   } else {
     proceedButton.disabled = true;
   }
-  document.getElementById("checkbox").addEventListener("click", checkCheckbox);
 }
 
+ //ACCESSO ALLA SECONDA PAGINA TRAMITE IL BOTTONE
+function goToNextPage() {
+  window.location.href = "test.html";
+}
 
+ //ATTIVAZIONE DEL TEST APPENA SI CARICA LA PAGINA
+window.addEventListener("load", function () { 
+  if (window.location.pathname.endsWith("test.html")) {
+    displayQuestion();
+  }
+});
 
+//ATTIVAZIONE DEL TIMER DI 60 SECONDI 
+
+function startTimer() {
+  timer = 60; // Inizializzazione del timer
+  timerElement.textContent = timer;
+  intervalId = setInterval(() => {
+    if (timer === 0) {
+      clearInterval(intervalId);
+      incorrectAnswers++;
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+      } else {
+        endQuiz();
+      }
+    } else {
+      timer--; // Decremento del timer solo se non è ancora zero
+      timerElement.textContent = timer;
+    }
+  }, 1000);
+}
+
+ //ATTIVAZIONE DEL TEST APPENA SI CARICA LA PAGINA CON RICHIAMO DI FUNZIONE TIMER
 function displayQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
@@ -150,25 +171,27 @@ function displayQuestion() {
     answerButton.addEventListener("click", () => checkAnswer(answer));
     answersElement.appendChild(answerButton);
   });
-
   startTimer();
   updateQuestionCount();
 }
 
+
+//CALCOLO DEL NUMERO DI DOMANDA RICHIAMATO IN FUNZIONE DISPLAYQUESTION
 function updateQuestionCount() {
   const currentQuestions = currentQuestionIndex + 1;
   questionCountLabel.innerHTML =
     "QUESTION " + currentQuestions + " / "  + totalQuestions ;
 }
 
+//PASSAGGIO ALLA DOMANDA SUCCESSIVA CON VERIFICA DEL SUO INDICE
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < totalQuestions) {
-    // verifica se l'indice della prossima domanda è minore che la quantità totale
     displayQuestion();
   }
 }
 
+//VERIFICA DELLE DOMANDE E AGGIUNTA AL NUMERO DI DOMANDE CORRETTE O INCORRETTE
 function checkAnswer(answer) {
   const currentQuestion = questions[currentQuestionIndex];
   if (answer === currentQuestion.correct_answer) {
@@ -176,7 +199,7 @@ function checkAnswer(answer) {
   } else {
     incorrectAnswers++;
   }
-  clearInterval(intervalId); // INTERRUZIONE DEL TIMER
+  clearInterval(intervalId); // INTERRUZIONE DEL TIMER SE LE DOMANDE SONO FINITE
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     displayQuestion();
@@ -185,6 +208,7 @@ function checkAnswer(answer) {
   }
 }
 
+//TERMINE DEL QUIZ E PASSAGGIO ALLA SLIDE 3
 function endQuiz() {
   questionElement.textContent = "Test completed";
   answersElement.innerHTML = "";
@@ -204,45 +228,23 @@ function endQuiz() {
     resultParagraph.innerText = "Failed. Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
   }
 
-  timerElement.remove();
+  timerElement.remove();  //RIMUOVE IL TIMER 
 
-  const resultsDiv = document.getElementById("results"); // a div results so pode aparecer na ultima pagina quando vem o resultado
-  // Aggiungi il paragrafo al div dei risultati
+  const resultsDiv = document.getElementById("results"); 
+  // AGGIUNTA DI UN PARAGRAFO AL DIV RESULTS
   resultsDiv.appendChild(resultParagraph);
   generateChart(resultChart);
 
+  //RIMOZIONE DEL NUMERO DI DOMANDE
   let removeQuestionLabel = document.getElementById("questionCountLabel");
   removeQuestionLabel.remove();
-
+ //RIMOZIONE DEL DIV DELLE RISPOSTE 
   let removeAnswersDiv = document.getElementById("answers");
   removeAnswersDiv.remove()
 }
 
-/* OPPURE SE CORRECT ANSWER < TEST FALLITO
-ELSE - TEST SUPERATO */
 
-function startTimer() {
-  let timer = 60;
-  timerElement.textContent = timer;
-}
-
-
-  intervalId = setInterval(() => {
-    timer--;
-    timerElement.textContent = timer;
-    if (timer === 0) {
-      clearInterval(intervalId);
-      incorrectAnswers++;
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        displayQuestion();
-      } else {
-        endQuiz();
-      }
-    }
-  }, 1000);
-
-
+ //GENERAZIONE DI UN GRAFICO A CIAMBELLA NELLA SLIDE 3
 function generateChart() {
   const resultChartCanvas = document.getElementById("resultChart"); //.getContext("2d"); //questo e' diverso
 

@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="style.css">
+
     <title>Rating</title>
 </head>
+
 <body>
-    <header>
-        <img src="assets/epicode_logo.png" alt="logo Epicode">
-        
-    </header>
-    <main>
-        <div>
-        <h2>Tell us how it's going</h2>
-        <p>From 0 to 10, how likely are you recommend EPICODE to a friend or a colleague? </p>
+    <div class="general-container">
+        <div class="main">
+            <div class="row">
+                <div class="logo">
+                    <img src="assets/epicode_logo.png" alt="epicode-logo" />
+                </div>
+            </div>
+            <div class="ratingpage">
+                <h2>Tell us how it's going</h2>
+                <p>From 0 to 10, how likely are you recommend EPICODE to a friend or a colleague? </p>
+
+                <div class="rating" id="rating">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                    <img class="star" src="assets/star2.svg" alt="stella">
+                </div>
+
+                <div class="submit-feeback">
+                    <p>Leave us an open feedback about your experience so far </p>
+
+                    <form>
+                        <input class="rate" type="text" placeholder="Write your comment here">
+                    </form>
+
+                    <button type="submit" class="btn"> Submit </button>
+                    <div id="userReview">
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-       
-        <div class="rating" id="rating">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-            <img class="star" src="assets/star2.svg"  alt="stella">
-          </div>
-          
-
-        <p>Leave us an open feedback about your experience so far </p> 
-        
-        <form>
-          <input class="rate" type="text" placeholder="Write your comment here">
-        </form>
-        
-        <button type="submit" class="btn"> Submit </button>
-    <div id="userReview">
     </div>
-    </main>
+    </div>
     <script src="rate.js"></script>
 </body>
+
 </html>

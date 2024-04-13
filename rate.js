@@ -38,7 +38,7 @@ function createReview() {
     const userProfileImage = document.createElement("img");
   
     userProfileImage.classList.add("userProfileImage");
-    userProfileImage.src = "assets/omino.png";
+    userProfileImage.src = "assets/user.svg";
   
     starContainer.classList.add("reviewStars");
   

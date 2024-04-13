@@ -12,10 +12,11 @@ body {
   color: white;
   max-width: 100%;
   margin: 0 auto;
+  height: 100vh;
 }
 
 .general-container {
-  height: 100vh;
+  height: 100%;
   max-width: 65%;
   margin: 0 auto;
   background-image: url(assets/bg.jpg);
@@ -125,34 +126,35 @@ li {
 /*QUI COMINCIA LA PAGINA 2 TEST.HTML*/
 
 .timer-container {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 }
 
-.timer-svg {
-  width: 200px;
-  height: 200px;
+#timer {
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  color: white;
+  opacity: 0.9;
+  font-family: "Inter", sans-serif;
+  font-size: 3vw;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: pulse 2s infinite;
 }
 
-.timer-circle {
-  fill: none;
-  stroke: #007bff;
-  stroke-width: 10;
-  stroke-dasharray: 435; /* lunghezza del tratto del cerchio */
-  stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.5s linear; /* Ridotto da 1s a 0.5s */
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-}
+@keyframes pulse {
+  0%, 100% {
+    background-color: #00ffff;
+  }
+  50% {
+    background-color: #d20094;
 
-.timer-text {
-  font-family: Arial, sans-serif;
-  font-size: 20px;
-  fill: #000;
-  text-anchor: middle;
-  transition: font-size 0.5s linear; /* Ridotto da 1s a 0.5s */
+  }
 }
-
 
 #quiz-container{
   height: auto;
@@ -236,37 +238,102 @@ li {
   display: inline-block;
   box-sizing: border-box;
 }
-/* NON SERVONO*/
-/*#rate {
-  display: flex;
-  flex-direction: row-reverse; 
-  justify-content: flex-end;
+
+#rateContainer button{
+  background-color: #00ffff;
+  border: none;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.5vw;
+  font-weight: bold;
+  padding: 0.7em 2.75em;
 }
 
-.star {
-    margin-bottom: 80px;
-  }
-  
-  .stella {
-    width: 50px;
-    margin: 5px;
-    filter: brightness(20%);
-  }
-  
-  .active,
-  .stella:hover,
-  .stella:nth-of-type(0):hover ~ .stella,
-  .stella:nth-of-type(1):hover ~ .stella, 
-  .stella:nth-of-type(2):hover ~ .stella, 
-  .stella:nth-of-type(3):hover ~ .stella, 
-  .stella:nth-of-type(4):hover ~ .stella, 
-  .stella:nth-of-type(5):hover ~ .stella, 
-  .stella:nth-of-type(6):hover ~ .stella, 
-  .stella:nth-of-type(7):hover ~ .stella, 
-  .stella:nth-of-type(8):hover ~ .stella, 
-  .stella:nth-of-type(9):hover ~ .stella, 
-  .stella:nth-of-type(10):hover ~ .stella {
-    filter: none;
-    transform: scale(115%);
-    cursor: pointer;
-  }*/ /*NON SERVONO*/
+#rateContainer button:hover {
+  box-shadow: 0 0 2em 0 #00ffff;
+}
+
+#rateContainer{
+margin: auto;
+display: flex;
+justify-content: center;
+padding-top: 5%;
+}
+
+
+
+/*QUI PARTE PAGINA 3*/
+
+.ratingpage {
+  text-align: center;
+  font-family: "Outfit", sans-serif;
+  margin: 0 auto;
+  max-width: auto;
+  padding: 0px 60px;
+}
+
+.ratingpage h2 {
+  font-size: 3vw;
+  font-family: "Outfit", sans-serif;
+  font-weight: bold;
+  opacity: 0.9;
+  padding-bottom: 10px;
+}
+
+.ratingpage p {
+  font-size: 1.6vw;
+  padding: 10px 10px;
+  font-weight: 200;
+}
+
+/*QUI PARTE LA SEZIONE RATING STELLE*/
+.rating {
+  text-align: center;
+}
+
+.submit-feeback {
+  text-align: center;
+  font-family: "outfit", sans-serif;
+  font-size: 1.7vw;
+  font-weight: 200;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+form {
+  padding-bottom: 40px;
+  width: 100%;
+}
+
+.rate {
+  width: 100%;
+  background-color: transparent;
+  border-style: none;
+  border-bottom: solid 2px #d20094;
+  outline: none;
+  font-family: "outfit", sans-serif;
+  font-size: 1.2vw;
+  color: white;
+}
+
+.submit-feeback button{
+  background-color: #00ffff;
+  border: none;
+  cursor: pointer;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.3vw;
+  font-weight: bold;
+  padding: 0.7em 2.5em;
+}
+
+.submit-feeback button:hover{
+box-shadow: 0 0 2em 0 #00ffff;
+}
+
+#userReview {
+  padding-top: 20px;
+}
+
+#userReview img{
+  height: 30px;
+}

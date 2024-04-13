@@ -97,12 +97,14 @@ const questions = [
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let incorrectAnswers = 0;
+let timer = 60;
 let intervalId;
 const totalQuestions = questions.length;
 
 const startButton = document.getElementById("start-button"); //PRIMA PAGINA
 const questionElement = document.getElementById("question"); //SECONDA PAGINA
 const answersElement = document.getElementById("answers"); //SECONDA PAGINA
+const timerElement = document.getElementById("timer"); //SECONDA PAGINA
 const correctElement = document.getElementById("correct"); //TERZA PAGINA
 const incorrectElement = document.getElementById("incorrect"); //TERZA PAGINA
 
@@ -119,7 +121,7 @@ function checkCheckbox() {
 }
 
  //ACCESSO ALLA SECONDA PAGINA TRAMITE IL BOTTONE
-function goToNextPage() {
+function goToTestPage() {
   window.location.href = "test.html";
 }
 
@@ -129,51 +131,31 @@ window.addEventListener("load", function () {
     displayQuestion();
   }
 });
-let duration = 15; 
-let timerText = document.querySelector(".timer-text");
 
-function updateTimer() {
-  let timer = duration;
+//ATTIVAZIONE DEL TIMER DI 60 SECONDI 
 
-  let circle = document.querySelector(".timer-circle");
-  let circumference = 2 * Math.PI * parseFloat(circle.getAttribute("r")); // Calcola la circonferenza
-
-  // Aggiungi un ritardo di 1 secondo prima di avviare l'intervallo
-  setTimeout(function() {
-    let intervalId = setInterval(function () {
-      timerText.textContent = timer;
-      
-      let percentage = (timer / duration);
-      let offset = circumference * (1 - percentage); // Calcola l'offset in base al tempo trascorso
-      circle.style.strokeDashoffset = offset;
-
-      if (timer <= 10) {
-        circle.classList.add("pulse");
-      }
-
-      if (timer === 0) {
-        clearInterval(intervalId);
-        incorrectAnswers++;
-        currentQuestionIndex++;
-
-        if (currentQuestionIndex < questions.length) {
-          displayQuestion();
-        } else {
-          endQuiz();
-        }
+function startTimer() {
+  timer = 30; // Inizializzazione del timer
+  timerElement.textContent = timer;
+  intervalId = setInterval(() => {
+    if (timer === 0) {
+      clearInterval(intervalId);
+      incorrectAnswers++;
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        displayQuestion();
       } else {
-        timer--; // Decremento del timer solo se non è ancora zero
+        endQuiz();
       }
-
-    }, 1000);
-  }, 1000); // Avvia l'intervallo dopo 1 secondo
+    } else {
+      timer--; // Decremento del timer solo se non Ã¨ ancora zero
+      timerElement.textContent = timer;
+    }
+  }, 1000);
 }
 
  //ATTIVAZIONE DEL TEST APPENA SI CARICA LA PAGINA CON RICHIAMO DI FUNZIONE TIMER
-
 function displayQuestion() {
-  clearInterval(intervalId);
-
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
   answersElement.innerHTML = "";
@@ -189,8 +171,7 @@ function displayQuestion() {
     answerButton.addEventListener("click", () => checkAnswer(answer));
     answersElement.appendChild(answerButton);
   });
-  updateTimer(30)
-  clearInterval(intervalId);
+  startTimer();
   updateQuestionCount();
 }
 
@@ -246,7 +227,8 @@ function endQuiz() {
 
     resultParagraph.innerText = "Failed. Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
   }
-  
+
+
   const resultsDiv = document.getElementById("results"); 
   // AGGIUNTA DI UN PARAGRAFO AL DIV RESULTS
   resultsDiv.appendChild(resultParagraph);
@@ -258,8 +240,30 @@ function endQuiz() {
  //RIMOZIONE DEL DIV DELLE RISPOSTE 
   let removeAnswersDiv = document.getElementById("answers");
   removeAnswersDiv.remove()
+
+  timerElement.remove()
+
+  rateButton()
+
 }
 
+//CREAZIONE DEL PULSANTE "RATE US"
+function rateButton() {
+  const rateContainerDiv = document.getElementById("rateContainer");
+  let rateButton = document.createElement("button");
+  rateButton.innerHTML = "RATE US";
+  
+  // Definire la funzione per andare alla pagina di valutazione
+  function goToRatePage() {
+      window.location.href = "rate.html";
+  }
+  
+  // Assegnare la funzione goToRatePage all'evento onclick del pulsante
+  rateButton.onclick = goToRatePage;
+  
+  // Aggiungere il pulsante al rateContainerDiv
+  rateContainerDiv.appendChild(rateButton);
+}
 
  //GENERAZIONE DI UN GRAFICO A CIAMBELLA NELLA SLIDE 3
 function generateChart() {
@@ -279,4 +283,4 @@ function generateChart() {
   });
 }
 
-
+//ACCESSO ALLA TERZA PAGINA TRAMITE BOTTONE

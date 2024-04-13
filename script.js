@@ -129,9 +129,10 @@ function checkCheckbox() {
   } else {
     proceedButton.disabled = true;
   }
+  document.getElementById("checkbox").addEventListener("click", checkCheckbox);
 }
 
-document.getElementById("checkbox").addEventListener("click", checkCheckbox);
+
 
 function displayQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
@@ -224,15 +225,9 @@ function startTimer() {
   let timer = 60;
   timerElement.textContent = timer;
 }
-  /*timerElement.innerHTML = `
-  <svg width="140" height="140">
-    <circle cx="70" cy="70" r="70" id="background-circle"></circle>
-    <circle cx="70" cy="70" r="70" id="progress-circle"></circle>
-  </svg>
-`;*/
 
 
-  /*intervalId = setInterval(() => {
+  intervalId = setInterval(() => {
     timer--;
     timerElement.textContent = timer;
     if (timer === 0) {
@@ -246,7 +241,7 @@ function startTimer() {
       }
     }
   }, 1000);
-}*/
+
 
 function generateChart() {
   const resultChartCanvas = document.getElementById("resultChart"); //.getContext("2d"); //questo e' diverso
@@ -264,17 +259,5 @@ function generateChart() {
     },
   });
 }
-// da qui comincia js stelle valutazione
 
-/*let arrayStars = document.querySelectorAll('.star');
-
-arrayStars.forEach((star, index) => { //itera sull'array di stelle, e prende come parametri la stella e l'indice corrispondente nell'array
-  star.addEventListener('click', () => {
-    arrayStars.forEach((star, selectedIndex) => { //all'interno del listener, quando passiamo il mouse sopra, questo codice itera di nuovo sull'array
-      
-      index <= selectedIndex ? star.classList.add('active') : star.classList.remove('active');// in sostanza fa sì che se clicco una stella, anche tutte le stelle rpima di lei sia segnate come attive e le altre dopo non attive
-      
-    })
-  })
-}) */ //NON FUNZIONA
 

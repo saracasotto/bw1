@@ -178,10 +178,21 @@ function displayQuestion() {
 
 //CALCOLO DEL NUMERO DI DOMANDA RICHIAMATO IN FUNZIONE DISPLAYQUESTION
 function updateQuestionCount() {
-  const currentQuestions = currentQuestionIndex + 1;
+  const currentQuestions = currentQuestionIndex + 1
   questionCountLabel.innerHTML =
-    "QUESTION " + currentQuestions + " / "  + totalQuestions ;
+    "<span class='question'>" + "Question " + currentQuestions + "</span>" +
+    "<span class='divider'>&nbsp/&nbsp</span>" + 
+    "<span class='total'>" + totalQuestions + "</span>"
+
+  const questionSpan = questionCountLabel.querySelector('.question')
+  const dividerSpan = questionCountLabel.querySelector('.divider')
+  const totalSpan = questionCountLabel.querySelector('.total')
+
+  questionSpan.style.color = 'white'
+  dividerSpan.style.color = 'white'
+  totalSpan.style.color = '#d20094'
 }
+
 
 //PASSAGGIO ALLA DOMANDA SUCCESSIVA CON VERIFICA DEL SUO INDICE
 function nextQuestion() {

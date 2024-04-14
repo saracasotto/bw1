@@ -9,7 +9,7 @@
 
 body {
   background-color: #0f101c;
-  /*COLORE BACKGROUND PRESO DA EPICODE*/
+  /*Backgroun color from Epicode Original Page*/
   color: white;
   max-width: 100%;
   margin: 0 auto;
@@ -17,6 +17,7 @@ body {
 }
 
 .general-container {
+  /*General container with background image*/
   height: 100%;
   max-width: 65%;
   margin: 0 auto;
@@ -26,6 +27,7 @@ body {
 }
 
 .main {
+  /*Container of all the elements*/
   margin: 0 auto;
   height: 100%;
   max-width: auto;
@@ -33,7 +35,7 @@ body {
 }
 
 .row {
-  /*CONTIENE LOGO E A SECONDA PAGINA IL TIMER*/
+  /*Logo and Timer container*/
   display: flex;
   align-items: center;
   vertical-align: center;
@@ -53,8 +55,10 @@ body {
   max-width: 100%;
 }
 
+/*HOME.HTML PAGE STARTS HERE*/
+
 .title-line {
-  /*CONTENITORE TITOLO*/
+  /*Title container*/
   margin: 0 auto;
   width: auto;
   padding: 20px 0px;
@@ -69,7 +73,7 @@ h1 {
 }
 
 .instructions-line {
-  /*CONTENITORE ISTRUZIONI*/
+  /*Instructions container*/
   padding: 20px 0px;
   font-family: "Inter", sans-serif;
   font-size: 1vw;
@@ -93,6 +97,7 @@ li {
 }
 
 #bottom {
+  /*Checkbox and Proceed Button container*/
   font-family: "Inter", sans-serif;
   font-size: 1vw;
   display: flex;
@@ -129,7 +134,7 @@ li {
   box-shadow: 0 0 2em 0 #00ffff;
 }
 
-/*QUI COMINCIA LA PAGINA 2 TEST.HTML*/
+/*TEST.HTML PAGE STARTS HERE*/
 
 .timer-container {
   width: 90px;
@@ -166,13 +171,13 @@ li {
 }
 
 #quiz-container {
-  /*CONTENITORE QUIZ*/
+  /*Questions and Answers Container*/
   height: auto;
   margin: 0 auto;
-
 }
 
 #question {
+  /*Question and Final Result tex Container*/
   text-align: center;
   font-size: 2.5vw;
   font-family: "Outfit", sans-serif;
@@ -215,6 +220,7 @@ li {
 }
 
 #questionCountLabel {
+  /*Number of the question*/
   font-family: "Outfit", sans-serif;
   display: flex;
   justify-content: center;
@@ -226,6 +232,7 @@ li {
   padding-top: 40px;
 }
 
+/*HERE STARTS THE RESULT PAGE*/
 #question .yourResults {
   font-size: 3vw;
   font-weight: bold;
@@ -242,7 +249,7 @@ li {
 }
 
 #results {
-  /*CONTENITORE RISULTATO IN PERCENTUALE E CHART*/
+  /*Results Percentage and Chart container*/
   max-width: 100%;
   margin: 0 auto;
   display: flex;
@@ -271,7 +278,7 @@ li {
 }
 
 #correct .rightwrong,
-#incorrect .rightwrong  {
+#incorrect .rightwrong {
   font-size: 3.5vw;
   font-weight: 300;
 }
@@ -289,6 +296,7 @@ li {
 
 
 #rateContainer {
+  /*Rating Button container*/
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -312,7 +320,7 @@ li {
 }
 
 
-/*QUI PARTE PAGINA 3*/
+/*RATE.HTML PAGE STARTS HERE*/
 
 .ratingpage {
   text-align: center;
@@ -336,13 +344,13 @@ li {
   font-weight: 200;
 }
 
-
 .rating {
-  /*SEZIONE RATING STELLE*/
+  /*Rating Stars Container*/
   text-align: center;
 }
 
 .submit-feeback {
+  /*Rating comment and Submit Button container*/
   text-align: center;
   font-family: "outfit", sans-serif;
   font-size: 1.7vw;
@@ -357,6 +365,7 @@ form {
 }
 
 .rate {
+  /*Rating comment*/
   width: 100%;
   background-color: transparent;
   border-style: none;
@@ -382,6 +391,7 @@ form {
 }
 
 #userReview {
+  /*the review is shown*/
   padding-top: 20px;
 }
 

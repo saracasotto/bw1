@@ -101,15 +101,15 @@ let timer;
 let intervalId;
 const totalQuestions = questions.length;
 
-const startButton = document.getElementById("start-button"); //PRIMA PAGINA
-const questionElement = document.getElementById("question"); //SECONDA PAGINA
-const answersElement = document.getElementById("answers"); //SECONDA PAGINA
-const timerElement = document.getElementById("timer"); //SECONDA PAGINA
-const correctElement = document.getElementById("correct"); //TERZA PAGINA
-const incorrectElement = document.getElementById("incorrect"); //TERZA PAGINA
+const startButton = document.getElementById("start-button"); //home.html
+const questionElement = document.getElementById("question"); //test.html
+const answersElement = document.getElementById("answers"); //test.html
+const timerElement = document.getElementById("timer"); //test.html
+const correctElement = document.getElementById("correct"); //test.html - result page
+const incorrectElement = document.getElementById("incorrect"); //test.html - result page
 
-//ATTIVAZIONE BOTTONE SOLAMENTE SE SI CLICCA LA CHECKBOX
 
+// The proceed button is enabled once the checkbox is clicked
 function checkCheckbox() {
   let checkbox = document.getElementById("checkbox");
   let proceedButton = document.getElementById("start-button");
@@ -120,22 +120,20 @@ function checkCheckbox() {
   }
 }
 
- //ACCESSO ALLA SECONDA PAGINA TRAMITE IL BOTTONE
+// Access to test.html through the proceed button
 function goToTestPage() {
   window.location.href = "test.html";
 }
-
- //ATTIVAZIONE DEL TEST APPENA SI CARICA LA PAGINA
-window.addEventListener("load", function () { 
+// Questions are displayed as the page loads
+window.addEventListener("load", function () {
   if (window.location.pathname.endsWith("test.html")) {
     displayQuestion();
   }
 });
 
-//ATTIVAZIONE DEL TIMER DI 60 SECONDI 
-
+// The timer starts
 function startTimer() {
-  timer = 30; // Inizializzazione del timer
+  timer = 30;
   timerElement.textContent = timer;
   intervalId = setInterval(() => {
     if (timer === 0) {
@@ -148,13 +146,13 @@ function startTimer() {
         endQuiz();
       }
     } else {
-      timer--; // Decremento del timer solo se non Ã¨ ancora zero
+      timer--; // Decrementing the timer only if it is not already zero.
       timerElement.textContent = timer;
     }
   }, 1000);
 }
 
- //ATTIVAZIONE DEL TEST APPENA SI CARICA LA PAGINA CON RICHIAMO DI FUNZIONE TIMER
+// Questions are displayed and the startTimer function invoked
 function displayQuestion() {
   const currentQuestion = questions[currentQuestionIndex];
   questionElement.textContent = currentQuestion.question;
@@ -175,14 +173,12 @@ function displayQuestion() {
   startTimer();
   updateQuestionCount();
 }
-
-
-//CALCOLO DEL NUMERO DI DOMANDA RICHIAMATO IN FUNZIONE DISPLAYQUESTION
+// Calculates the n. of questions. Invoked in the displayQuestion function 
 function updateQuestionCount() {
   const currentQuestions = currentQuestionIndex + 1
   questionCountLabel.innerHTML =
     "<span class='question'>" + "QUESTION " + currentQuestions + "</span>" +
-    "<span class='divider'>&nbsp/&nbsp</span>" + 
+    "<span class='divider'>&nbsp/&nbsp</span>" +
     "<span class='total'>" + totalQuestions + "</span>"
 
   const questionSpan = questionCountLabel.querySelector('.question')
@@ -193,17 +189,14 @@ function updateQuestionCount() {
   dividerSpan.style.color = '#d20094'
   totalSpan.style.color = '#d20094'
 }
-
-
-//PASSAGGIO ALLA DOMANDA SUCCESSIVA CON VERIFICA DEL SUO INDICE
+// transition to the next question
 function nextQuestion() {
   currentQuestionIndex++;
   if (currentQuestionIndex < totalQuestions) {
     displayQuestion();
   }
 }
-
-//VERIFICA DELLE DOMANDE E AGGIUNTA AL NUMERO DI DOMANDE CORRETTE O INCORRETTE
+// Verification of questions and addition to the count of correct/incorrect questions.
 function checkAnswer(answer) {
   const currentQuestion = questions[currentQuestionIndex];
   if (answer === currentQuestion.correct_answer) {
@@ -211,7 +204,7 @@ function checkAnswer(answer) {
   } else {
     incorrectAnswers++;
   }
-  clearInterval(intervalId); // INTERRUZIONE DEL TIMER SE LE DOMANDE SONO FINITE
+  clearInterval(intervalId); // Stops timer if there are no more questions and invokes endQuiz
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     displayQuestion();
@@ -220,83 +213,81 @@ function checkAnswer(answer) {
   }
 }
 
-//TERMINE DEL QUIZ E PASSAGGIO ALLA SLIDE 3
+// End of the quiz and transition to slide 3 of results
 function endQuiz() {
   const totalQuestions = correctAnswers + incorrectAnswers;
   const percentageC = (correctAnswers / totalQuestions) * 100;
   const percentageW = (incorrectAnswers / totalQuestions) * 100;
 
-  correctElement.innerHTML = "<span class='rightwrong'>Right</span>" + 
-  "<br><span class='percentage'>" + 
-  percentageC + "%</span>" +
-  "<br><span class='totalQ'>" + 
-  correctAnswers + "/" + totalQuestions +  " questions" + "</span>"; 
-  
-  incorrectElement.innerHTML = "<span class='rightwrong'>Wrong</span>" + 
-  "<br><span class='percentage'>" + 
-  percentageW + "%</span>" +
-  "<br><span class='totalQ'>" + 
-  incorrectAnswers + "/" + totalQuestions + " questions" + "</span>";
+  correctElement.innerHTML = "<span class='rightwrong'>Right</span>" +
+    "<br><span class='percentage'>" +
+    percentageC + "%</span>" +
+    "<br><span class='totalQ'>" +
+    correctAnswers + "/" + totalQuestions + " questions" + "</span>";
+
+  incorrectElement.innerHTML = "<span class='rightwrong'>Wrong</span>" +
+    "<br><span class='percentage'>" +
+    percentageW + "%</span>" +
+    "<br><span class='totalQ'>" +
+    incorrectAnswers + "/" + totalQuestions + " questions" + "</span>";
 
   if (correctAnswers > 5) {
-    questionElement.innerHTML = 
-    "<p class='yourResults'>Results</p>: <br><p class='yourMessage'>Congratulations Epicoder, test passed!</p>"
+    questionElement.innerHTML =
+      "<p class='yourResults'>Results</p>: <br><p class='yourMessage'>Congratulations Epicoder, test passed!</p>"
   } else {
-    questionElement.innerHTML = 
-    "<p class='yourResults'>Results</p> <br><p class='yourMessage'>Sorry Epicoder, try again, you'll do better next time!</p>"
+    questionElement.innerHTML =
+      "<p class='yourResults'>Results</p> <br><p class='yourMessage'>Sorry Epicoder, try again, you'll do better next time!</p>"
   }
 
   generateChart(resultChart);
 
-  //RIMOZIONE DEL NUMERO DI DOMANDE
+  // removal of the number of questions (questionCountLabel)
   let removeQuestionLabel = document.getElementById("questionCountLabel");
   removeQuestionLabel.remove();
 
- //RIMOZIONE DEL DIV DELLE RISPOSTE 
+  // removal of answers div
   let removeAnswersDiv = document.getElementById("answers");
   removeAnswersDiv.remove()
 
+  // removal of timer div
   timerElement.remove()
 
   rateButton()
 
 }
 
-//CREAZIONE DEL PULSANTE "RATE US"
+// creation of the rating button
 function rateButton() {
   const rateContainerDiv = document.getElementById("rateContainer");
   let rateButton = document.createElement("button");
   rateButton.innerHTML = "RATE US";
-  
-  // Definire la funzione per andare alla pagina di valutazione
+
+  // transition to last page function creation
   function goToRatePage() {
-      window.location.href = "rate.html";
+    window.location.href = "rate.html";
   }
-  
-  // Assegnare la funzione goToRatePage all'evento onclick del pulsante
+
+  // goToRatePage invoked through onclick event
   rateButton.onclick = goToRatePage;
-  
-  // Aggiungere il pulsante al rateContainerDiv
+
+  // addition of a button to rateContainerDiv
   rateContainerDiv.appendChild(rateButton);
 }
 
- //GENERAZIONE DI UN GRAFICO A CIAMBELLA NELLA SLIDE 3
-function generateChart() {
-  const resultChartCanvas = document.getElementById("resultChart"); //.getContext("2d"); //questo e' diverso
 
+// Chart generation. Invoked in endQuiz function
+function generateChart() {
+  const resultChartCanvas = document.getElementById("resultChart");
   const resultChart = new Chart(resultChartCanvas, {
     type: "doughnut",
     data: {
       datasets: [
-        { 
+        {
           label: "Points",
           data: [correctAnswers, incorrectAnswers],
           backgroundColor: ["#d20094", "#00ffff"],
-          borderWidth: 0.5,
         }
       ]
     },
   });
 }
-
-//ACCESSO ALLA TERZA PAGINA TRAMITE BOTTONE

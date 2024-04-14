@@ -10,39 +10,36 @@
 </head>
 
 <body>
-  <div class="general-container"> <!--SLIDE DUE-->
+  <div class="general-container">
     <div class="main">
-      <div class="row">  <!--INCLUDE LOGO E TIMER-->
+      <div class="row"> <!--Logo and Timer Container-->
         <div class="logo">
           <img src="assets/epicode_logo.png" alt="logo" />
         </div>
-        <div class="timer-container">  <!--AGGIUNTO AL CONTENITORE ROW-->
+        <div class="timer-container">
           <circle id="timer" cx="70" cy="70" r="70"></circle>
         </div>
 
       </div>
-
-      <div id="quiz-container"> <!--CONTENITORE DI DOMANDE E RISPOSTE-->
+      <div id="quiz-container"> <!--Question and Answers container-->
         <p id="question"></p>
         <div id="answers"></div>
       </div>
       <div>
-        <label id="questionCountLabel"></label> <!--DOMANDA 1/10-->
+        <label id="questionCountLabel"></label> <!--Number of Question Container-->
       </div>
-      <div id="results"> <!--QUI PARTE LA SLIDE TRE-->
+      <!--Slide 3 with results starts here-->
+      <div id="results"> <!--Results percentage and chart container -->
         <p id="correct"></p>
         <div class="chart-container">
-          <canvas id="resultChart"></canvas> 
+          <canvas id="resultChart"></canvas>
         </div>
         <p id="incorrect"></p>
       </div>
-      <div id="rateContainer">
-
+      <div id="rateContainer"> <!--Rating Button container-->
       </div>
     </div>
   </div>
-
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js" defer></script>
 </body>

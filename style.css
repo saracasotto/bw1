@@ -8,7 +8,8 @@
 }
 
 body {
-  background-color: #0f101c; /*PRESO DA EPICODE*/
+  background-color: #0f101c;
+  /*COLORE BACKGROUND PRESO DA EPICODE*/
   color: white;
   max-width: 100%;
   margin: 0 auto;
@@ -21,6 +22,7 @@ body {
   margin: 0 auto;
   background-image: url(assets/bg.jpg);
   background-size: cover;
+  overflow: hidden;
 }
 
 .main {
@@ -30,9 +32,11 @@ body {
   padding: 0px 90px;
 }
 
-.row { /*CONTIENE LOGO E A SECONDA PAGINA IL TIMER*/
+.row {
+  /*CONTIENE LOGO E A SECONDA PAGINA IL TIMER*/
   display: flex;
   align-items: center;
+  vertical-align: center;
   justify-content: space-between;
   padding: 15px 0px;
   width: auto;
@@ -49,7 +53,8 @@ body {
   max-width: 100%;
 }
 
-.title-line {  /*CONTENITORE TITOLO*/
+.title-line {
+  /*CONTENITORE TITOLO*/
   margin: 0 auto;
   width: auto;
   padding: 20px 0px;
@@ -63,7 +68,8 @@ h1 {
   opacity: 0.9;
 }
 
-.instructions-line {  /*CONTENITORE ISTRUZIONI*/
+.instructions-line {
+  /*CONTENITORE ISTRUZIONI*/
   padding: 20px 0px;
   font-family: "Inter", sans-serif;
   font-size: 1vw;
@@ -126,18 +132,18 @@ li {
 /*QUI COMINCIA LA PAGINA 2 TEST.HTML*/
 
 .timer-container {
-  width: 150px;
-  height: 150px;
+  width: 90px;
+  height: 90px;
 }
 
 #timer {
-  width: 75%;
-  height: 75%;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   color: white;
   opacity: 0.9;
   font-family: "Inter", sans-serif;
-  font-size: 3vw;
+  font-size: 2.5vw;
   font-weight: normal;
   display: flex;
   justify-content: center;
@@ -147,16 +153,20 @@ li {
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     background-color: #00ffff;
   }
+
   50% {
     background-color: #d20094;
 
   }
 }
 
-#quiz-container{
+#quiz-container {
+  /*CONTENITORE QUIZ*/
   height: auto;
   margin: 0 auto;
 
@@ -168,16 +178,17 @@ li {
   font-family: "Outfit", sans-serif;
   font-weight: normal;
   opacity: 0.9;
-  height: 8vw;
+  height: 100px;
   max-width: 100%;
+  padding: 30px 0px 20px 0px;
 }
 
 #answers {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
+  padding: 40px 0px;
   height: 150px;
-  padding-top: 80px;
 }
 
 #answers button {
@@ -207,39 +218,86 @@ li {
   font-family: "Outfit", sans-serif;
   display: flex;
   justify-content: center;
-  padding-top: 20px;
-  height: 80x;
   font-size: 1.2vw;
   opacity: 0.9;
   letter-spacing: 1px;
+  font-weight: 500;
+  margin: 0 auto;
+  padding-top: 40px;
 }
 
+#question .yourResults {
+  font-size: 3vw;
+  font-weight: bold;
+  line-height: 0.1vw;
+  margin-bottom: 0;
+}
+
+#question .yourMessage {
+  font-size: 1.5vw;
+  font-weight: normal;
+  margin-top: 0;
+  line-height: 0.1vw;
+
+}
 
 #results {
-  font-size: 2vw;
+  /*CONTENITORE RISULTATO IN PERCENTUALE E CHART*/
   max-width: 100%;
-  font-family: "Outfit", sans-serif;
-  font-weight: normal;
-  opacity: 0.9;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
-}
-
-.results:last-child {
-  display: inline-block;
+  padding: 0px 20px 10px 20px;
+  font-family: "Outfit";
+  opacity: 0.9;
 }
 
 .chart-container {
-  max-width: 200px;
-  height: 200px;
-  padding-bottom: 40px;
-  display: inline-block;
-  box-sizing: border-box;
+  width: 200px;
 }
 
-#rateContainer button{
+#correct {
+  text-align: left;
+  width: 200px;
+  line-height: 2.5vw;
+
+}
+
+#incorrect {
+  text-align: right;
+  width: 200px;
+  line-height: 2.5vw;
+}
+
+#correct .rightwrong,
+#incorrect .rightwrong  {
+  font-size: 3.5vw;
+  font-weight: 300;
+}
+
+#correct .percentage,
+#incorrect .percentage {
+  font-size: 3.5vw;
+  font-weight: bold;
+}
+
+#correct .totalQ,
+#incorrect .totalQ {
+  font-size: 1vw;
+}
+
+
+#rateContainer {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5%;
+}
+
+
+#rateContainer button {
   background-color: #00ffff;
   border: none;
   cursor: pointer;
@@ -252,14 +310,6 @@ li {
 #rateContainer button:hover {
   box-shadow: 0 0 2em 0 #00ffff;
 }
-
-#rateContainer{
-margin: auto;
-display: flex;
-justify-content: center;
-padding-top: 5%;
-}
-
 
 
 /*QUI PARTE PAGINA 3*/
@@ -286,8 +336,9 @@ padding-top: 5%;
   font-weight: 200;
 }
 
-/*QUI PARTE LA SEZIONE RATING STELLE*/
+
 .rating {
+  /*SEZIONE RATING STELLE*/
   text-align: center;
 }
 
@@ -316,7 +367,7 @@ form {
   color: white;
 }
 
-.submit-feeback button{
+.submit-feeback button {
   background-color: #00ffff;
   border: none;
   cursor: pointer;
@@ -326,14 +377,14 @@ form {
   padding: 0.7em 2.5em;
 }
 
-.submit-feeback button:hover{
-box-shadow: 0 0 2em 0 #00ffff;
+.submit-feeback button:hover {
+  box-shadow: 0 0 2em 0 #00ffff;
 }
 
 #userReview {
   padding-top: 20px;
 }
 
-#userReview img{
+#userReview img {
   height: 30px;
 }

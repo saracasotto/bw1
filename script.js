@@ -97,7 +97,7 @@ const questions = [
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let incorrectAnswers = 0;
-let timer = 60;
+let timer;
 let intervalId;
 const totalQuestions = questions.length;
 
@@ -171,6 +171,7 @@ function displayQuestion() {
     answerButton.addEventListener("click", () => checkAnswer(answer));
     answersElement.appendChild(answerButton);
   });
+
   startTimer();
   updateQuestionCount();
 }
@@ -180,7 +181,7 @@ function displayQuestion() {
 function updateQuestionCount() {
   const currentQuestions = currentQuestionIndex + 1
   questionCountLabel.innerHTML =
-    "<span class='question'>" + "Question " + currentQuestions + "</span>" +
+    "<span class='question'>" + "QUESTION " + currentQuestions + "</span>" +
     "<span class='divider'>&nbsp/&nbsp</span>" + 
     "<span class='total'>" + totalQuestions + "</span>"
 
@@ -189,7 +190,7 @@ function updateQuestionCount() {
   const totalSpan = questionCountLabel.querySelector('.total')
 
   questionSpan.style.color = 'white'
-  dividerSpan.style.color = 'white'
+  dividerSpan.style.color = '#d20094'
   totalSpan.style.color = '#d20094'
 }
 
@@ -221,33 +222,36 @@ function checkAnswer(answer) {
 
 //TERMINE DEL QUIZ E PASSAGGIO ALLA SLIDE 3
 function endQuiz() {
-  questionElement.textContent = "Test completed";
-  answersElement.innerHTML = "";
-  correctElement.textContent = "Right answers: " + correctAnswers;
-  incorrectElement.textContent = "Wrong answers: " + incorrectAnswers;
   const totalQuestions = correctAnswers + incorrectAnswers;
-  const percentage = (correctAnswers / totalQuestions) * 100;
+  const percentageC = (correctAnswers / totalQuestions) * 100;
+  const percentageW = (incorrectAnswers / totalQuestions) * 100;
 
-  const resultParagraph = document.createElement("p");
+  correctElement.innerHTML = "<span class='rightwrong'>Right</span>" + 
+  "<br><span class='percentage'>" + 
+  percentageC + "%</span>" +
+  "<br><span class='totalQ'>" + 
+  correctAnswers + "/" + totalQuestions +  " questions" + "</span>"; 
+  
+  incorrectElement.innerHTML = "<span class='rightwrong'>Wrong</span>" + 
+  "<br><span class='percentage'>" + 
+  percentageW + "%</span>" +
+  "<br><span class='totalQ'>" + 
+  incorrectAnswers + "/" + totalQuestions + " questions" + "</span>";
 
   if (correctAnswers > 5) {
-    questionElement.textContent = "Congratulations Epicoder, test passed!"
-    resultParagraph.innerText = "Passed! Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
+    questionElement.innerHTML = 
+    "<p class='yourResults'>Results</p>: <br><p class='yourMessage'>Congratulations Epicoder, test passed!</p>"
   } else {
-    questionElement.textContent = "Sorry Epicoder, try again, you'll do better next time!"
-
-    resultParagraph.innerText = "Failed. Correct Answers: " + correctAnswers + "/" + totalQuestions + " (" + percentage + "%)";
+    questionElement.innerHTML = 
+    "<p class='yourResults'>Results</p> <br><p class='yourMessage'>Sorry Epicoder, try again, you'll do better next time!</p>"
   }
 
-
-  const resultsDiv = document.getElementById("results"); 
-  // AGGIUNTA DI UN PARAGRAFO AL DIV RESULTS
-  resultsDiv.appendChild(resultParagraph);
   generateChart(resultChart);
 
   //RIMOZIONE DEL NUMERO DI DOMANDE
   let removeQuestionLabel = document.getElementById("questionCountLabel");
   removeQuestionLabel.remove();
+
  //RIMOZIONE DEL DIV DELLE RISPOSTE 
   let removeAnswersDiv = document.getElementById("answers");
   removeAnswersDiv.remove()
@@ -287,7 +291,8 @@ function generateChart() {
         { 
           label: "Points",
           data: [correctAnswers, incorrectAnswers],
-          backgroundColor: ["#00ffff", "#d20094"],
+          backgroundColor: ["#d20094", "#00ffff"],
+          borderWidth: 0.5,
         }
       ]
     },
